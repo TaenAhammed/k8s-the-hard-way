@@ -1,0 +1,16 @@
+arch: aarch64 # Optional, defaults to host architecture
+images:
+  - location: "https://cloud.debian.org/images/cloud/bookworm/20230531-1397/debian-12-genericcloud-arm64-20230531-1397.qcow2"
+    arch: aarch64
+cpus: 1
+memory: 2GiB
+disk: 20GiB
+env:
+  DEBIAN_FRONTEND: noninteractive
+provision:
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -e
+      apt-get update
+      apt-get -y install socat conntrack iptables ipvsadm ipset ethtool ca-certificates
